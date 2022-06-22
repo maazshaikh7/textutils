@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 export default function Textform(props) {
-
   const [text, setText] = useState("Enter text here");
-  const avgReadTime = (0.15 * text.split(" ").length).toFixed(2) + " seconds";
-  let numberOfWords = text.split(" ").length;
+  const numberOfWords = text.split(" ").filter((element) => element).length;
+  const avgReadTime = numberOfWords * 0.25;
+  const approxReadTime = avgReadTime.toFixed(2) + " seconds";
+  const myStyle = { color: props.mode === "dark" ? "white" : "black" };
 
   // Function to convert text in textarea to uppercase
   const handleUpClick = () => {
@@ -28,16 +29,18 @@ export default function Textform(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
- 
+
   return (
     <>
       <div className="container my-5">
-        <h1 style={{color : props.mode === "dark"? "white": "black"}}>{props.heading} </h1>
+        <h1 style={myStyle}>{props.heading} </h1>
         <div className="mb-3">
           <label htmlFor="myBox" className="form-label"></label>
           <textarea
             className="form-control"
-            style={{backgroundColor : props.mode === "dark"? "darkgrey": "white"}}
+            style={{
+              backgroundColor: props.mode === "dark" ? "darkgrey" : "white",
+            }}
             value={text}
             onChange={handleOnChange}
             id="myBox"
@@ -55,13 +58,17 @@ export default function Textform(props) {
         </div>
       </div>
       <div className="container my-3">
-        <hr style={{color : props.mode === "dark"? "white": "black"}}/>
-        <h1 className="my-3" style={{color : props.mode === "dark"? "white": "black"}}>Your text summary</h1>
-        <p style={{color : props.mode === "dark"? "white": "black"}}>
+        <hr style={myStyle} />
+        <h1 className="my-3" style={myStyle}>
+          Your text summary
+        </h1>
+        <p style={myStyle}>
           {numberOfWords} words and {text.length} characters
         </p>
-        <p style={{color : props.mode === "dark"? "white": "black"}}>Average reading time for the given text is around {avgReadTime}</p>
-        <hr/>
+        <p style={myStyle}>
+          Average reading time for the given text is around {approxReadTime}
+        </p>
+        <hr />
       </div>
     </>
   );

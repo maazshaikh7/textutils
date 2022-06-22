@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../index.css"
+import "../index.css";
 import { Link } from "react-router-dom";
-
 
 export default function Navbar(props) {
   return (
@@ -33,19 +32,22 @@ export default function Navbar(props) {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={"/About"}>
-                {props.aboutText}
+                About-us
               </Link>
             </li>
           </ul>
           <div className="form-check form-switch px-4">
             <input
               className="form-check-input"
-
               onClick={props.toggleMode}
               type="checkbox"
               id="text-dark"
             />
-            <label className="form-check-label" htmlFor="text-dark" style ={{color: "gray"}}>
+            <label
+              className="form-check-label"
+              htmlFor="text-dark"
+              style={{ color: "gray" }}
+            >
               Switch mode
             </label>
           </div>
