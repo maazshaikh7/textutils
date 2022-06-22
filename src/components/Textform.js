@@ -28,7 +28,7 @@ export default function Textform(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
-
+ 
   return (
     <>
       <div className="container my-5">
@@ -61,6 +61,7 @@ export default function Textform(props) {
           {numberOfWords} words and {text.length} characters
         </p>
         <p style={{color : props.mode === "dark"? "white": "black"}}>Average reading time for the given text is around {avgReadTime}</p>
+        <hr/>
       </div>
     </>
   );
