@@ -1,10 +1,10 @@
 import React from "react";
 export default function About(props) {
   const myStyle =  {color: props.mode === "dark" ? "white" : "black"}
-  const bodyStyle =  {backgroundColor: props.mode === "dark" ? "#1b2228" : "powderblue"}
+  document.body.style.backgroundColor = props.mode === "dark" ? "#1b2228" : "powderblue"
 
   return (
-    <body style={bodyStyle}>
+    <>
       <div className="container py-4">
         <h1 className="my-4" style={myStyle}>
           {props.heading}{" "}
@@ -59,6 +59,6 @@ export default function About(props) {
           lorem ipsum, nec commodo ipsum porta a.
         </p>
       </div>
-    </body>
+    </>
   );
 }

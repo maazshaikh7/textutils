@@ -7,6 +7,7 @@ export default function Navbar(props) {
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+      style= {{borderBottom : "solid 2px lightblue" }}
     >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">

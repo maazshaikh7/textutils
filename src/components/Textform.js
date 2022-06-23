@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function Textform(props) {
   const [text, setText] = useState("Enter text here");
-  const numberOfWords = text.split(" ").filter((element) => element).length;
+  const numberOfWords = text.split(/\s+/).filter((element) => element).length;
   const avgReadTime = numberOfWords * 0.25;
   const approxReadTime = avgReadTime.toFixed(2) + " seconds";
   const myStyle = { color: props.mode === "dark" ? "white" : "black" };
@@ -12,14 +12,25 @@ export default function Textform(props) {
     const newText = text.toUpperCase();
     setText(newText);
   };
-
+  
   // Function to convert text in textarea to lowercase
   const handleLowerClick = () => {
     const newText = text.toLowerCase();
     setText(newText);
   };
-
+  
   // Function to convert text in textarea to lowercase
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+  };
+  
+  // Function to remove extra spaces in textarea
+  const handleExtraSpaces = () => {
+    const newText = text.split(/[ ]+/)
+    setText(newText.join(" "));
+  };
+
+  // Function to clear text 
   const handleClearClick = () => {
     const newText = "";
     setText(newText);
@@ -46,13 +57,19 @@ export default function Textform(props) {
             id="myBox"
             rows="12"
           ></textarea>
-          <button className="btn btn-primary m-3" onClick={handleUpClick}>
+          <button className="btn btn-primary mt-3 mx-1" onClick={handleUpClick}>
             Convert to uppercase
           </button>
-          <button className="btn btn-primary m-3" onClick={handleLowerClick}>
+          <button className="btn btn-primary mt-3 mx-1" onClick={handleLowerClick}>
             Convert to lowercase
           </button>
-          <button className="btn btn-danger m-3" onClick={handleClearClick}>
+          <button className="btn btn-primary mt-3 mx-1" onClick={handleExtraSpaces}>
+            Remove extra spaces 
+          </button>
+          <button className="btn btn-success mt-3 mx-1" onClick={handleCopy}>
+            Copy text
+          </button>
+          <button className="btn btn-danger mt-3 mx-1" onClick={handleClearClick}>
             Clear text
           </button>
         </div>
